@@ -52,21 +52,30 @@
   .cell:nth-child(3n + 3) {
     border-right: none;
   }
-
+/* Not allowed cursor over cells with x or circle */
   .cell.x,
   .cell.circle {
     cursor: not-allowed;
   }
+  /* color for X */
   .cell.x::before,
   .cell.x::after {
     background-color: red;
   }
-
+/* Color for Circle */
+  .cell.circle:before {
+    background-color: #134bf4;
+  }
+/* color for X when hover over empty cell */
   .board.x .cell:not(.x):not(.circle):hover:before,
   .board.x .cell:not(.x):not(.circle):hover:after {
     background-color: rgb(231, 137, 137);
   }
-
+/* color for circle when hover over empty cell */
+.board.circle .cell:not(.x):not(.circle):hover:before{
+    background-color: #7e98e6;
+}
+/* Create X using pseudo elements */
   .cell.x::before,
   .cell.x::after,
   .board.x .cell:not(.x):not(.circle):hover::before,
@@ -75,7 +84,6 @@
     position: absolute;
     width: calc(var(--mark-size) * .15);
     height: calc(var(--mark-size));
-
   }
 
   .cell.cell.x::before,
@@ -87,21 +95,24 @@
   .board.x .cell:not(.x):not(.circle):hover::after {
     transform: rotate(-45deg);
   }
-  
+  /* Create circle using pseudo elements */
   .cell.circle::before,
-  .cell.circle::after {
+  .cell.circle::after,
+  .board.circle .cell:not(.x):not(.circle):hover::before,
+  .board.circle .cell:not(.x):not(.circle):hover::after{
     content: '';
     position: absolute;
     border-radius: 50%;
   }
 
-  .cell.circle::before {
+  .cell.circle::before,
+  .board.circle .cell:not(.x):not(.circle):hover::before {
     width: var(--mark-size);
     height: var(--mark-size);
-    background-color: rgb(19, 75, 244);
   }
 
-  .cell.circle::after {
+  .cell.circle::after,
+  .board.circle .cell:not(.x):not(.circle):hover::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
     background-color: #fff;
