@@ -1,27 +1,58 @@
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
+const WINNING_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+]
 
 const cellElements = document.querySelectorAll('[data-cell]')
+const board = document.getElementById('board')
 let circleTurn
-// add event listener on each cell only once
-cellElements.forEach(cell => {
-    cell.addEventListener('click', handleClick, { once: true})
-})
+startGame()
 
-function handleClick(event){
+function startGame() {
+    circleTurn = false
+    // add event listener on each cell only once
+    cellElements.forEach(cell => {
+        cell.addEventListener('click', handleClick, {
+            once: true
+        })
+    })
+
+    setBoardHoverClass()
+}
+
+function handleClick(event) {
     const cell = event.target
-    const currentClass = circleTurn? CIRCLE_CLASS : X_CLASS
+    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
     placeMark(cell, currentClass)
     // Check for win
     // Check for draw
     // Switch Turns
     swapTurns()
+    setBoardHoverClass()
 }
 
-function placeMark(cell, currentClass){
+function placeMark(cell, currentClass) {
     cell.classList.add(currentClass)
 }
 
-function swapTurns(){
+function swapTurns() {
     circleTurn = !circleTurn
+}
+// Add hover element over the empty cells
+function setBoardHoverClass() {
+    board.classList.remove(X_CLASS)
+    board.classList.remove(CIRCLE_CLASS)
+    if (circleTurn) {
+        board.classList.add(CIRCLE_CLASS)
+    } else {
+        board.classList.add(X_CLASS)
+    }
 }
