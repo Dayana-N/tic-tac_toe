@@ -9,6 +9,7 @@
 
   body {
     margin: 0;
+    background-color: #000;
   }
 
   .board {
@@ -25,7 +26,7 @@
   .cell {
     width: var(--cell-size);
     height: var(--cell-size);
-    border: 1px solid #000;
+    border: 1px solid #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,12 +61,37 @@
   /* color for X */
   .cell.x::before,
   .cell.x::after {
-    background-color: red;
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: calc(var(--mark-size));
+    box-shadow: 0 0 16px #ff5252, inset 0 0 16px #ff5252;
+    animation: pulse-X 2s linear 1s infinite;
   }
+  /* #ff0000 */
+
+  @keyframes pulse-X {
+    0% { box-shadow:0 0 16px #ff5252, inset 0 0 16px #ff5252; }
+    50% { box-shadow:0 0 25px #ff0000, inset 0 0 25px #ff0000; }
+    100% { box-shadow:0 0 16px #ff5252, inset 0 0 16px #ff5252; }
+  }
+
 /* Color for Circle */
   .cell.circle:before {
-    background-color: #134bf4;
+    /* background-color: #134bf4; */
+      background-color:transparent;
+      border-radius:50px;
+      box-shadow: 0 0 16px #4c5cea, inset 0 0 16px #4c5cea;
+      animation: pulse 2s linear 1s infinite;
+  
   }
+
+  @keyframes pulse {
+    0% { box-shadow:0 0 16px #4c5cea, inset 0 0 16px #4c5cea; }
+    50% { box-shadow:0 0 25px #6187fa, inset 0 0 25px #6187fa; }
+    100% { box-shadow:0 0 16px #4c5cea, inset 0 0 16px #4c5cea; }
+  }
+
 /* color for X when hover over empty cell */
   .board.x .cell:not(.x):not(.circle):hover:before,
   .board.x .cell:not(.x):not(.circle):hover:after {
@@ -115,7 +141,7 @@
   .board.circle .cell:not(.x):not(.circle):hover::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
-    background-color: #fff;
+    background-color: #000;
   }
 
   .winning-message {
