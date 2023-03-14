@@ -58,6 +58,7 @@
   .cell.circle {
     cursor: not-allowed;
   }
+  
   /* color for X */
   .cell.x::before,
   .cell.x::after {
@@ -68,7 +69,6 @@
     box-shadow: 0 0 16px #ff5252, inset 0 0 16px #ff5252;
     animation: pulse-X 2s linear 1s infinite;
   }
-  /* #ff0000 */
 
   @keyframes pulse-X {
     0% { box-shadow:0 0 16px #ff5252, inset 0 0 16px #ff5252; }
@@ -83,7 +83,6 @@
       border-radius:50px;
       box-shadow: 0 0 16px #4c5cea, inset 0 0 16px #4c5cea;
       animation: pulse 2s linear 1s infinite;
-  
   }
 
   @keyframes pulse {
